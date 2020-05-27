@@ -33,7 +33,7 @@ Definition
            sort: <document>,
            maxTimeMS: <number>,
            upsert: <boolean>,
-           returnNewDocument: <boolean>
+           new: <boolean>
          }
       )
 
@@ -112,7 +112,7 @@ Definition
           
           
    
-      * - ``returnNewDocument``
+      * - ``new``
    
         - boolean
    
@@ -127,7 +127,7 @@ Definition
 
    :returns:
 
-      Returns either the original document or, if ``returnNewDocument: true``, 
+      Returns either the original document or, if ``new: true``, 
       the updated document.
       
 Behavior
@@ -189,7 +189,7 @@ The operation returns the *original* document before the update:
 
    { _id: 6319, name: "R. Stiles", "assignment" : 2, "points" : 12 }
    
-If ``returnNewDocument`` was true, the operation would return the 
+If ``new`` was true, the operation would return the 
 updated document instead.
 
 .. _findOneAndUpdate-example-sort-and-replace-document:
@@ -291,7 +291,7 @@ document if nothing matches the ``filter``:
    db.scores.findOneAndUpdate(
       { "name" : "A.B. Abracus" },
       { $set: { "name" : "A.B. Abracus", "assignment" : 5}, $inc : { "points" : 5 } },
-      { sort: { "points" : 1 }, upsert:true, returnNewDocument : true }
+      { sort: { "points" : 1 }, upsert:true, new : true }
    );
    }
    catch (e){
@@ -309,6 +309,6 @@ The operation returns the following:
       "points" : 5
    }
    
-If ``returnNewDocument`` was false, the operation would return ``null`` as 
+If ``new`` was false, the operation would return ``null`` as 
 there is no original document to return.
 
